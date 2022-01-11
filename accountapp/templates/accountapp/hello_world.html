@@ -16,11 +16,13 @@
             testing
         </h1>
 
-        <div class="testing" style="display: block; width: 48px; height: 48px; "> block  </div>
-        <div class="testing" style="display: inline; width: 3em; height: 3em; "> inline  </div>
-        <div class="testing" style="display: None; width: 3rem; height: 3rem; "> None  </div>
-        <div class="testing" style="display: inline-block; width: 30%; height: 30%; "> inline-bloack  </div>
-        <div class="testing" >default</div>
-
+       <form action="/account/hello_world/" method="post">
+                <!--    btn primary = 부트스트랩 관련-->
+           {% csrf_token %}
+           <input type="submit" class="btn btn-primary" value="POST">
+       </form>
+        <h1>
+            {{ text }}
+        </h1>
     </div>
 {%  endblock %}
