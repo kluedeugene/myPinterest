@@ -11,18 +11,24 @@
         }
     </style>
 
-    <div style="height: 20rem; background-color: #38df81; border-radius: 1rem; margin: 2rem;">
-        <h1>
-            testing
+    <div style="border-radius: 1rem; margin: 2rem;text-align: center">
+        <h1 style="font-family: 'lobster', cursive;">       <!-- cursive = loabster를 구글폰트에서 가져오지 못할시 cursive를 사용 -->
+            Hello world List!
         </h1>
 
        <form action="/account/hello_world/" method="post">
-                <!--    btn primary = 부트스트랩 관련-->
            {% csrf_token %}
-           <input type="submit" class="btn btn-primary" value="POST">
+           <div>
+               <input type="text" name="hello_world_input">   <!-- hello_world_input 이라는 정보를 받아서 서버로 전송 -->
+           </div>
+           <input type="submit" class="btn btn-primary" value="POST">        <!--    btn primary = 부트스트랩 관련-->
        </form>
+
+        {% if hello_world_output %}
         <h1>
-            {{ text }}
+            {{ hello_world_output.text }}
         </h1>
+        {% endif %}
+
     </div>
 {%  endblock %}
