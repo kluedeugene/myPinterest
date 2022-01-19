@@ -45,6 +45,7 @@ class AccountDetailView(DetailView):                        #디테일뷰
 
 class AccountUpdateView(UpdateView):                        #클래스베이스뷰
     model = User
+    context_object_name = 'target_user'
     form_class = AccountUpdateForm                          #name을 수정하지못하게 form을 커스터마이징
     success_url = reverse_lazy('accountapp:hello_world')            #클래스에선 reverse_lazy 사용하여야한다. reverse는 함수형태에서.
     template_name = 'accountapp/update.html'
@@ -52,5 +53,6 @@ class AccountUpdateView(UpdateView):                        #클래스베이스�
 
 class AccountDeleteView(DeleteView):                        #클래스베이스뷰
     model = User
+    context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
