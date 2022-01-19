@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from accountapp.forms import AccountUpdateForm
 from accountapp.models import HelloWorld
@@ -48,3 +48,9 @@ class AccountUpdateView(UpdateView):                        #클래스베이스�
     form_class = AccountUpdateForm                          #name을 수정하지못하게 form을 커스터마이징
     success_url = reverse_lazy('accountapp:hello_world')            #클래스에선 reverse_lazy 사용하여야한다. reverse는 함수형태에서.
     template_name = 'accountapp/update.html'
+
+
+class AccountDeleteView(DeleteView):                        #클래스베이스뷰
+    model = User
+    success_url = reverse_lazy('accountapp:login')
+    template_name = 'accountapp/delete.html'
