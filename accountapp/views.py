@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
@@ -5,12 +6,16 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
 from accountapp.models import HelloWorld
 
+has_ownership = [account_ownership_required, login_required]
 
+@login_required
 def hello_world(request):
 
     if request.method == "POST":
@@ -29,7 +34,6 @@ def hello_world(request):
         return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
 
 
-
 class AccountCreateView(CreateView):                        #클래스베이스뷰
     model = User
     form_class = UserCreationForm  #검증 작업
@@ -43,6 +47,8 @@ class AccountDetailView(DetailView):                        #디테일뷰
     template_name = 'accountapp/detail.html'
 
 
+@method_decorator(has_ownership, 'get')                                           #일반 펑션을 사용하는 데코레이터를 메소드에 사용할수잇게 변환해주는 데코레이터?
+@method_decorator(has_ownership, 'post')
 class AccountUpdateView(UpdateView):                        #클래스베이스뷰
     model = User
     context_object_name = 'target_user'
@@ -51,6 +57,8 @@ class AccountUpdateView(UpdateView):                        #클래스베이스�
     template_name = 'accountapp/update.html'
 
 
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
 class AccountDeleteView(DeleteView):                        #클래스베이스뷰
     model = User
     context_object_name = 'target_user'
