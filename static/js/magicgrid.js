@@ -145,7 +145,7 @@ MagicGrid.prototype.colWidth = function colWidth () {
  * Initializes an array of empty columns
  * and calculates the leftover whitespace.
  *
- * @return {{cols: Array, wSpace: number}}
+ * @return {cols: Array, wSpace: number}
  * @private
  */
 MagicGrid.prototype.setup = function setup () {
@@ -288,7 +288,7 @@ MagicGrid.prototype.listen = function listen () {
 let magicGrid = new MagicGrid({
   container: '.container',
   animate: true,
-  gutter: 30,
+  gutter: 12,
   static: true,
   useMin: true
 });

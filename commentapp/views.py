@@ -26,7 +26,6 @@ class CommentCreateView(CreateView):
 
 @method_decorator(comment_ownership_required, 'get')
 @method_decorator(comment_ownership_required, 'post')
-
 class CommentDeleteView(DeleteView):
     model = Comment
     context_object_name = 'target_comment'
