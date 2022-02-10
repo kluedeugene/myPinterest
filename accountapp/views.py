@@ -28,7 +28,7 @@ def hello_world(request):
         new_hello_world.save()
 
         hello_world_list = HelloWorld.objects.all()
-        return HttpResponseRedirect(reverse('accountapp:hello_world'))   #accountapp 내부에 있는 hello_world로 재접속 하라는 response
+        return HttpResponseRedirect(reverse('accountapp:hello_world'))   #projectapp 내부에 있는 hello_world로 재접속 하라는 response
     else:
         hello_world_list = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
@@ -42,7 +42,7 @@ class AccountCreateView(CreateView):                        #클래스베이스�
 
 
 class AccountDetailView(DetailView):                        #디테일뷰
-    model =  User
+    model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
 
