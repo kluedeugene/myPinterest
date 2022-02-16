@@ -16,6 +16,7 @@
 .pragmatic_header{
     text-align: center;
     margin: 2rem 0;
+
 }
 
 @media screen and (max-width: 500px){
@@ -25,14 +26,15 @@
 }
 
 a {
-    color: black;
-    /*text-decoration: none;          !* 언더라인 제거 *!*/
+    color: #093980;
+    text-decoration: none;         /* 언더라인 제거 */
 }
 /*마우스를 올렸을때 */
 a:hover {
     color: black;
     text-decoration: none;
 }
+
 
 .pragmatic_header_nav{
     margin: 0 0.5rem;
