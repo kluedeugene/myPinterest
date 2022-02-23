@@ -20,7 +20,7 @@ has_ownership = [account_ownership_required, login_required]
 class AccountCreateView(CreateView):                        #클래스베이스뷰
     model = User
     form_class = UserCreationForm  #검증 작업
-    success_url = reverse_lazy('accountapp:hello_world')            #클래스에선 reverse_lazy 사용하여야한다. reverse는 함수형태에서.
+    success_url = reverse_lazy('home')            #클래스에선 reverse_lazy 사용하여야한다. reverse는 함수형태에서.
     template_name = 'accountapp/create.html'
 
 
@@ -41,7 +41,7 @@ class AccountUpdateView(UpdateView):                        #클래스베이스�
     model = User
     context_object_name = 'target_user'
     form_class = AccountUpdateForm                          #name을 수정하지못하게 form을 커스터마이징
-    success_url = reverse_lazy('accountapp:hello_world')            #클래스에선 reverse_lazy 사용하여야한다. reverse는 함수형태에서.
+    success_url = reverse_lazy('home')            #클래스에선 reverse_lazy 사용하여야한다. reverse는 함수형태에서.
     template_name = 'accountapp/update.html'
 
 
