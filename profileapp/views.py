@@ -20,7 +20,7 @@ class ProfileCreateView(CreateView):
         temp_profile = form.save(commit=False)
         temp_profile.user = self.request.user
         temp_profile.save()
-        return super().form_vaild(form)
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('accountapp:detail', kwargs={'pk': self.object.user.pk})     #self.object 는 Profile을 의미.
