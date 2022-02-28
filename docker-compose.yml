@@ -1,0 +1,36 @@
+version: "3.6"
+services:
+  mariadb:
+    image: mariadb:10.5
+    networks:
+      - network
+    volumes:
+      - maria-database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password1234
+      MYSQL_DATABASE: django
+      MYSQL_USER: django
+      MYSQL_PASSWORD: password1234
+  django_container_gunicorn:
+    image: django_test_image:4
+    networks:
+        - network
+    volumes:
+        - static-volume:/home/myPinterest/staticfiles
+        - media-volume:/home/myPinterest/media
+  nginx:
+    image: nginx:1.19.5
+    networks:
+        - network
+    volumes:
+        - /home/django_course/ngnix.conf:/etc/nginx/nginx.conf
+        - static-volume:/data/static
+        - media-volume:/data/media
+    ports:
+        - 80:80
+networks:
+  network:
+volumes:
+  static-volume:
+  media-volume:
+  maria-database:
