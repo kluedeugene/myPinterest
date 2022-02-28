@@ -2,16 +2,18 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
+RUN echo "testing11"
+
 RUN git clone https://github.com/kluedeugene/myPinterest.git
 
-WORKDIR /home/pragmatic/
+WORKDIR /home/myPinterest/
 
 RUN pip install -r requirements.txt
 
-SECRET
+RUN pip install gunicorn
 
-RUN python manage.py migrate
+RUN pip install mysqlclient
 
 EXPOSE 8000
 
-CMD ["python","manage.py","runserver","0.0.0.0:8000]
+CMD ["bash", "-c","python manage.py collectstatic --noinput --settings=pragmatic.settings.deploy && python manage.py migrate --settings=pragmatic.settings.deploy && gunicorn pragmatic.wsgi --env DJANGO_SETTINGS_MODULE=pragmatic.settings.deploy --bind 0.0.0.0:8000"]
