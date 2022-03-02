@@ -24,6 +24,7 @@ SECRET_KEY = read_secret('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+CSRF_TRUSTED_ORIGINS = ['https://www.djangomypinterest.shop']
 ALLOWED_HOSTS = ['*']
 
 # Database
